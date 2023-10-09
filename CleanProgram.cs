@@ -7,21 +7,21 @@ SemaphoreSlim semaphoreSlim = new(2, 3);
 var t1 = Task.Run(async() => // определение метода как асинхронного
 {
     await semaphoreSlim.WaitAsync(); //ожидание завершения процесса в семафоре асинхронно и освобождения места для нового процесса
-    testValue= testValue+1;
+    testValue++; 
     semaphoreSlim.Release(); // освобождение места в семафоре, чтобы другой поток мог начать выполняться
 });
 
 var t2 = Task.Run(async() =>
 {
     await semaphoreSlim.WaitAsync(); //ожидание завершения процесса в семафоре асинхронно и освобождения места для нового процесса
-    testValue = testValue + 1;
+    testValue++;
     semaphoreSlim.Release(); // освобождение места в семафоре, чтобы другой поток мог начать выполняться
 });
 
 var t3 = Task.Run(async() =>
 {
     await semaphoreSlim.WaitAsync(); //ожидание завершения процесса в семафоре асинхронно и освобождения места для нового процесса
-    testValue = testValue + 1;
+    testValue++;
     semaphoreSlim.Release(); // освобождение места в семафоре, чтобы другой поток мог начать выполняться
 });
 
